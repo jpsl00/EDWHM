@@ -11,8 +11,23 @@
   },
   "author": "jpsl00",
   "license": "MIT",
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  },
   "scripts": {
-    "test": "node index.js"
-  }
+    "test": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpsl00/EDWHM.git"
+  },
+  "keywords": [
+    "nodejs",
+    "discord"
+  ],
+  "bugs": {
+    "url": "https://github.com/jpsl00/EDWHM/issues"
+  },
+  "homepage": "https://github.com/jpsl00/EDWHM#readme"
 }
