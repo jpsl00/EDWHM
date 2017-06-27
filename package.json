@@ -1,0 +1,18 @@
+{
+  "name": "edwhm",
+  "version": "1.0.0",
+  "description": "Easy Discord Webhook Messenger",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "chalk": "^1.1.3",
+    "express": "^4.15.3",
+    "request": "^2.81.0"
+  },
+  "author": "jpsl00",
+  "license": "MIT",
+  "devDependencies": {},
+  "scripts": {
+    "test": "node index.js"
+  }
+}
