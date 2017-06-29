@@ -1,13 +1,10 @@
 const chalk = require('chalk');
 const express = require('express');
 const request = require('request');
-const bodyparser = require('body-parser');
+const bodyParser = require('body-parser');
 const app = express();
 
-
-app.use(bodyparser.urlencoded({
-    extended: true
-}));
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
@@ -15,20 +12,18 @@ app.get('/', (req, res) => {
 });
 
 app.post('/webhook', (req, res) => {
-    var json = {
-        "content": req.body.msg,
-        "username": req.body.usr,
-        "avatar_url": req.body.avt,
-        "tts": req.body.tts,
-    };
     request({
         method: 'POST',
         url: req.body.hook,
-        json: json,
+        json: {
+            'content':req.body.content,
+            'username':req.body.username,
+            'avatar_url':req.body.avatar_url,
+            'tts':req.body.tts
+        },
     });
-
-    console.log(chalk.blue("[POST] ") + chalk.yellow("webhook url: "+req.body.hook+" data: " + JSON.stringify(Json)));
-    res.redirect('/');
+    console.log(chalk.blue("[POST] ") + chalk.yellow(JSON.stringify(req.body)));
+    res.sendStatus(200).end();
 });
 
 app.listen(80, () => {

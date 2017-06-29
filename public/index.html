@@ -58,8 +58,8 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="button" class="btn btn-default" name="save" onclick="makeArray()">Save</button>
-					<button type="button" class="btn btn-default" name="load" onclick="loadArray()">Load</button>
+					<button type="button" class="btn btn-default" name="save" onclick="prompt("",saveJSON())">Save</button>
+					<button type="button" class="btn btn-default" name="load" onclick="loadJSON()">Load</button>
 					<button type="submit" class="btn btn-default" name="submit">Enviar</button>
 				</div>
 			</div>
@@ -79,23 +79,19 @@
 		});
 
 		$(document).ready(function () {
-
 			var form = $('#mainform');
-
 			form.submit(function (ev) {
 				ev.preventDefault();
-
-				var formData = form.serialize();
-
 				$.ajax({
-					method: 'POST',
+					type: 'POST',
 					url: form.attr('action'),
-					data: formData,
+					data: saveJSON(),
+					contentType: "application/json; charset=utf-8",
 					success: function (data) {
-						console.log('Success!')
+						console.log('Success! ' + JSON.stringify(data))
 					},
 					error: function (jqXHR, textStatus, err) {
-						console.log('text status ' + textStatus + ', err ' + err)
+						console.log('Text status: ' + textStatus + '; Error: ' + err)
 					}
 				})
 			});
